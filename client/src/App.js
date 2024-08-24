@@ -3,6 +3,13 @@ import './App.css';
 
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import Header from './components/Header';
+//import Courses from './components/Courses';
+//import CourseDetail from './components/CourseDetail';
+//import CreateCourse from './components/CreateCourse';
+//import Error from './components/Error';
+// import Forbidden from './components/Forbidden';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -20,7 +27,8 @@ function App() {
   })
   return (
     <div>
-      This is my react app.
+      <Header/>
+      <NotFound/>
       <h1>API Data</h1>
       {data ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
