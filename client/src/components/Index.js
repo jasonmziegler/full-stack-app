@@ -1,7 +1,20 @@
+// src/components/index.js
+
+import React from 'react';
+
+const Index = () => {
+    return(
+        <div>
+            This is index.js
+        </div>
+    );
+};
+
+/*
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+</html><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Treehouse Full Stack JavaScript Project 10 | Full Stack App with React and a REST API">
@@ -17,17 +30,7 @@
 
 <body>
     <div id="root">
-        <header>
-            <div class="wrap header--flex">
-                <h1 class="header--logo"><a href="index.html">Courses</a></h1>
-                <nav>
-                    <ul class="header--signedout">
-                        <li><a href="sign-up.html">Sign Up</a></li>
-                        <li><a href="sign-in.html">Sign In</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        
         <main>
             <div class="wrap main--grid">
                 <a class="course--module course--link" href="course-detail.html">
@@ -55,3 +58,4 @@
 </body>
 
 </html>
+ */ 
