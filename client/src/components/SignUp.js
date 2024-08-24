@@ -1,12 +1,16 @@
 import React from "react";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <main>
       <div class="form--centered">
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
 
         <form>
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" type="text" value=""></input>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text" value=""></input>
           <label for="emailAddress">Email Address</label>
           <input
             id="emailAddress"
@@ -17,7 +21,7 @@ const SignIn = () => {
           <label for="password">Password</label>
           <input id="password" name="password" type="password" value=""></input>
           <button class="button" type="submit">
-            Sign In
+            Sign Up
           </button>
           <button
             class="button button-secondary"
@@ -27,17 +31,16 @@ const SignIn = () => {
           </button>
         </form>
         <p>
-          Don't have a user account? Click here to{" "}
-          <a href="sign-up.html">sign up</a>!
+          Already have a user account? Click here to{" "}
+          <a href="sign-in.html">sign in</a>!
         </p>
       </div>
     </main>
   );
 };
 
-export default SignIn;
-/*
-<!DOCTYPE html>
+export default SignUp;
+/* <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -72,4 +75,5 @@ export default SignIn;
 </body>
 
 </html>
+
 */

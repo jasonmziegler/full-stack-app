@@ -9,7 +9,10 @@ import Header from './components/Header';
 //import CreateCourse from './components/CreateCourse';
 //import Error from './components/Error';
 // import Forbidden from './components/Forbidden';
-import NotFound from './components/NotFound';
+// import NotFound from './components/NotFound';
+// import SignIn from './components/SignIn';
+// import SignUp from './components/SignUp';
+import UpdateCourse from './components/UpdateCourse';
 
 function App() {
 
@@ -28,7 +31,7 @@ function App() {
   return (
     <div>
       <Header/>
-      <NotFound/>
+      <UpdateCourse/>
       <h1>API Data</h1>
       {data ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
