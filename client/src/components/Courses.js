@@ -1,26 +1,19 @@
 // src/components/index.js
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Courses = () => {
   return (
         <main>
           <div class="wrap main--grid">
-            <a class="course--module course--link" href="course-detail.html">
+            <Link class="course--module course--link" to="courses/1">
               <h2 class="course--label">Course</h2>
               <h3 class="course--title">Build a Basic Bookcase</h3>
-            </a>
-            <a class="course--module course--link" href="course-detail.html">
-              <h2 class="course--label">Course</h2>
-              <h3 class="course--title">Learn How to Program</h3>
-            </a>
-            <a class="course--module course--link" href="course-detail.html">
-              <h2 class="course--label">Course</h2>
-              <h3 class="course--title">Learn How to Test Programs</h3>
-            </a>
-            <a
+            </Link>
+            <Link
               class="course--module course--add--module"
-              href="create-course.html"
+              to="/courses/create"
             >
               <span class="course--add--title">
                 <svg
@@ -35,7 +28,7 @@ const Courses = () => {
                 </svg>
                 New Course
               </span>
-            </a>
+            </Link>
           </div>
         </main>
   );
