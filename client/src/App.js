@@ -31,13 +31,14 @@ function App() {
     .catch(error => {
       console.error('Error fetching data:', error);
     })
-  })
+  }, []);
+  
   return (
     <Router>
       <Header/>
       <Routes>
         <Route path="/" element={<Courses/>} />
-        <Route path='/courses/:id' element={<CourseDetail/>} />
+        <Route path="/courses/:id" element={<CourseDetail/>} />
         <Route path="/courses/create" element={<CreateCourse/>} />
         <Route path="/courses/:id/update" element={<UpdateCourse />} />
         <Route path='/error' element={<Error/>} />

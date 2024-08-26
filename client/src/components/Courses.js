@@ -1,16 +1,34 @@
 // src/components/index.js
 
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 
 const Courses = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    //Fetch the list of courses from the API
+  axios.get('http://localhost:5000/api/courses')
+  .then(response => {
+    setCourses(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching courses: ', error);
+  })
+  }, []);
+  
   return (
         <main>
           <div class="wrap main--grid">
-            <Link class="course--module course--link" to="courses/1">
+            { courses.map( course => (
+              <Link key={course.id} class="course--module course--link" to={`courses/${course.id}`}>
               <h2 class="course--label">Course</h2>
-              <h3 class="course--title">Build a Basic Bookcase</h3>
+              <h3 class="course--title">{course.title}</h3>
             </Link>
+            ))}
+            
+            
             <Link
               class="course--module course--add--module"
               to="/courses/create"
