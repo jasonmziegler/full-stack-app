@@ -1,28 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.get("http://localhost:5000/api/users", {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        navigate("/courses");
+      }
+    } catch (err) {
+      setError("Invalid email or password");
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/courses');
+  };
+
   return (
     <main>
-      <div class="form--centered">
+      <div className="form--centered">
         <h2>Sign In</h2>
-
-        <form>
-          <label for="emailAddress">Email Address</label>
+        {error && <p style={{color:'red'}}>{error}</p>}
+        <form onSubmit={handleSignIn}>
+          <label htmlFor="emailAddress">Email Address</label>
           <input
             id="emailAddress"
             name="emailAddress"
             type="email"
-            value=""
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           ></input>
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" value=""></input>
-          <button class="button" type="submit">
+          <label htmlFor="password">Password</label>
+          <input 
+            id="password" 
+            name="password" 
+            type="password" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            ></input>
+          <button className="button" type="submit">
             Sign In
           </button>
-          <button
-            class="button button-secondary"
-            onclick="event.preventDefault(); location.href='index.html';"
-          >
+          <button className="button button-secondary" onClick={handleCancel}>
             Cancel
           </button>
         </form>

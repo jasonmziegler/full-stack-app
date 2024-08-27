@@ -20,20 +20,20 @@ const Courses = () => {
   
   return (
         <main>
-          <div class="wrap main--grid">
+          <div className="wrap main--grid">
             { courses.map( course => (
               <Link key={course.id} class="course--module course--link" to={`courses/${course.id}`}>
-              <h2 class="course--label">Course</h2>
-              <h3 class="course--title">{course.title}</h3>
+              <h2 className="course--label">Course</h2>
+              <h3 className="course--title">{course.title}</h3>
             </Link>
             ))}
             
             
             <Link
-              class="course--module course--add--module"
+              className="course--module course--add--module"
               to="/courses/create"
             >
-              <span class="course--add--title">
+              <span className="course--add--title">
                 <svg
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
