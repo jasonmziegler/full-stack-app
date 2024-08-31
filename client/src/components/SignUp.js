@@ -32,23 +32,44 @@ const SignUp = () => {
     data: JSON.stringify(user)
   };
 try {
- axios(options)
-    .then(response => {
-      if(response.status === 201) {
-        console.log(`${user.username} is successfully signed up.`);
-      } else if (response.status === 400) {
-        const data = response.json();
-        console.log(data);
-        setErrors(data.errors);
-      }
-    }
+
+  const response = await axios(options);
+
+  if(response.status === 201) {
+    console.log(`${user.username} is successfully signed up.`);
+    
+  } else if (response.status === 400) {
+    const data = response.json();
+    console.log(data);
+    setErrors(data.errors);
+  }
+
+//  axios(options)
+//     .then(response => {
+//       if(response.status === 201) {
+//         console.log(`${user.username} is successfully signed up.`);
+//       } else if (response.status === 400) {
+//         const data = response.json();
+//         console.log(data);
+//         setErrors(data.errors);
+//       }
+//     }
   
-  )
+//   )
 } catch(error) {
   console.log("Caught Errors: ", error)
-  setErrors(error);
-}
+  if (error.response) {
+    console.log("Server Error: ", error.response.data);
+    setErrors(error.response.data.errors || ["An unexpected error occured"]);
+  } else if (error.request) {
+    console.log("No response received: ", error.request);
+    setErrors(["No response from the server. Please try again later."]);
+  } else {
+    console.log("Error setting up request: ", error.message);
+    setErrors([error.message]);
+  }
 };
+  }
   return (
     <main>
       <div class="form--centered">

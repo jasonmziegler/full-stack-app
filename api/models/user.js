@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
                     msg: 'A Last Name is required to create a user record.'
                 },
                 notEmpty: {
-                    msg: 'Please provide a first name.'
+                    msg: 'Please provide a last name.'
                 }
             }            
         },
@@ -60,6 +60,9 @@ module.exports = (sequelize) => {
             validate: {
                 notNull: {
                     msg: 'A Password is required to create a user record.'
+                },
+                notEmpty: {
+                    msg: 'Please provide a password.'
                 }
             },
             set(val) {

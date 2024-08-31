@@ -45,12 +45,12 @@ app.get('/api/users', authenticateUser, (async (req, res) => {
 app.post('/api/users', (async (req, res) => {
   console.log(req.body);
   try {
-    const { firstName, lastName, emailAddress, password } = req.body;
+    // const { firstName, lastName, emailAddress, password } = req.body;
 
     // Validate required fields
-    if (!firstName || !lastName || !emailAddress || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
+    // if (!firstName || !lastName || !emailAddress || !password) {
+    //   return res.status(400).json({ message: 'All fields are required' });
+    // }
 
     // Attempt to create the user
     await User.create(req.body);
