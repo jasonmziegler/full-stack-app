@@ -1,25 +1,84 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
+  // State
+  const firstname = useRef(null);
+  const lastname = useRef(null);
+  const username = useRef(null);
+  const password = useRef(null);
+  const [errors, setErrors] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = {
+      firstName: firstname.current.value,
+      lastName: lastname.current.value,
+      emailAddress: username.current.value,
+      password: password.current.value,
+    }
+
+    // axios
+
+  const options = {
+    url: 'http://localhost:5000/api/users',
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    data: JSON.stringify(user)
+  };
+try {
+ axios(options)
+    .then(response => {
+      if(response.status === 201) {
+        console.log(`${user.username} is successfully signed up.`);
+      } else if (response.status === 400) {
+        const data = response.json();
+        console.log(data);
+        setErrors(data.errors);
+      }
+    }
+  
+  )
+} catch(error) {
+  console.log("Caught Errors: ", error)
+  setErrors(error);
+}
+};
   return (
     <main>
       <div class="form--centered">
         <h2>Sign Up</h2>
 
-        <form>
+        {/*Error Code from react-authentication course */}
+        {errors.length ? (
+            <div>
+              <h2 className="validation--errors--label">Validation errors</h2>
+              <div className="validation-errors">
+                <ul>
+                  {errors.map((error, i) => <li key={i}>{error}</li>)}
+                </ul>
+              </div>
+            </div>
+          ) : null }
+        <form onSubmit={handleSubmit}>
           <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" type="text" value=""></input>
+          <input id="firstName" name="firstName" type="text" ref={firstname}></input>
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" value=""></input>
+          <input id="lastName" name="lastName" type="text" ref={lastname}></input>
           <label for="emailAddress">Email Address</label>
           <input
             id="emailAddress"
             name="emailAddress"
             type="email"
-            value=""
+            ref={username}
           ></input>
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" value=""></input>
+          <input id="password" name="password" type="password" ref={password}></input>
           <button class="button" type="submit">
             Sign Up
           </button>
@@ -32,7 +91,7 @@ const SignUp = () => {
         </form>
         <p>
           Already have a user account? Click here to{" "}
-          <a href="sign-in.html">sign in</a>!
+          <Link to="/signin">sign in</Link>!
         </p>
       </div>
     </main>

@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const { User, Course, sequelize } = require('./models');
 const { authenticateUser } = require('./middleware/auth-user');
 const cors = require('cors');
+const user = require('./models/user');
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
@@ -44,17 +45,48 @@ app.get('/api/users', authenticateUser, (async (req, res) => {
 app.post('/api/users', (async (req, res) => {
   console.log(req.body);
   try {
+    const { firstName, lastName, emailAddress, password } = req.body;
+
+    // Validate required fields
+    if (!firstName || !lastName || !emailAddress || !password) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Attempt to create the user
     await User.create(req.body);
     res.setHeader('Location', `/`);
-    res.status(201).send();
+    res.status(201).send(); // Send a 201 status with no content
+
   } catch (error) {
     console.log('Error: ', error.name);
     if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-      res.status(400).json({ error });
+      res.status(400).json({
+        message: 'Validation error',
+        errors: error.errors.map(err => err.message) // Return a list of validation error messages
+      });
     } else {
-      throw error;
+      res.status(500).json({ message: 'An unexpected error occurred' }); // General error handling
     }
   }
+
+  // try {
+  //   const {firstname, lastname, username, password} = req.body;
+  //   //Validate Required Fields
+
+  //   if (!firstname || !lastname || !username || !password) {
+  //     return res.status(400).json({ message: 'All fields are required'});
+  //   }
+  //   await User.create(req.body);
+  //   res.setHeader('Location', `/`);
+  //   res.status(201).send();
+  // } catch (error) {
+  //   console.log('Error: ', error.name);
+  //   if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
+  //     res.status(400).json({ error });
+  //   } else {
+  //     throw error;
+  //   }
+  //  }
   
 }));
 
