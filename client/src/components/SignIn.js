@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// moved axios import to UserContext
 import { UserContext } from "../context/UserContext";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signInUser } = useContext(UserContext);
+  const { actions } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Event Handlers
@@ -18,26 +18,21 @@ const SignIn = () => {
       username: email,
       password: password,
     };
-
-    const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
-
-    const options = {
-      url: "http://localhost:5000/api/users",
-      method: "GET",
-      headers: {
-        'Authorization': `Basic ${encodedCredentials}`,
-      }
-    }
+    // Moved encoded credentials  and axios options to UserContext
+    
 
     try {
-      const response = await axios(options);
-      //console.log(response);
-      if(response.status === 200) {
-        console.log(`${email} is successfully signed in.`);
-        const user = response.data;
-        console.log(user)
+      const user = await actions.signInUser(credentials);
+
+      if (user) {
         navigate("/");
+      } else {
+        setError('Sign in was unsuccessful');
       }
+      // We need to Move the API call to the UserContext
+      // TODO: Get user from UserContext (we need still need to handle errors)
+        // Success ( user !== null) -> navigate to authenticated route
+        // Failure (use === nul) -> Update error state
     } catch (error) {
       console.log(error.response.status);
       if (error.response && error.response.status === 401) {
