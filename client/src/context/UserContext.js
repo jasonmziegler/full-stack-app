@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 
 // Create Context
+// https://teamtreehouse.com/library/react-authentication-2/provide-authuser-to-entire-app-with-context
 export const UserContext = createContext();
 
 // Create provider component

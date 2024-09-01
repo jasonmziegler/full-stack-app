@@ -4,16 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import {UserContext} from './context/UserContext';
+import {UserProvider} from './context/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    {/*not sure where to add this:  value={{user}}*/}
-      <UserContext.Provider>
+      <UserProvider>
         <App />
-      </UserContext.Provider>
+      </UserProvider>
       </BrowserRouter>
       
   </React.StrictMode>
