@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { actions } = useContext(UserContext);
   // State
   const firstname = useRef(null);
   const lastname = useRef(null);
@@ -38,6 +41,12 @@ try {
 
   if(response.status === 201) {
     console.log(`${user.username} is successfully signed up.`);
+    const authUser = await actions.signInUser({username: user.emailAddress, password: user.password})
+    if (authUser) {
+      navigate("/");
+    } else {
+      setErrors('Sign in was unsuccessful');
+    }
   } 
   // else if (response.status === 400) {
   //   const data = response.json();
