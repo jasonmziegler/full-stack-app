@@ -1,6 +1,6 @@
 'use strict';
 
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, ValidationError } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize) => {
@@ -66,8 +66,15 @@ module.exports = (sequelize) => {
                 }
             },
             set(val) {
-                const hashedPassword = bcrypt.hashSync(val, 10);
-                this.setDataValue('password', hashedPassword);
+                if (val && val.trim() !== '') {
+                    const hashedPassword = bcrypt.hashSync(val, 10);
+                    this.setDataValue('password', hashedPassword);
+                } 
+                // else {
+                //     throw new ValidationError('Please provide a password');
+                // }
+                // const hashedPassword = bcrypt.hashSync(val, 10);
+                // this.setDataValue('password', hashedPassword);
             }       
         }
     }, { sequelize });

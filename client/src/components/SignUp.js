@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   // State
   const firstname = useRef(null);
   const lastname = useRef(null);
@@ -37,12 +38,12 @@ try {
 
   if(response.status === 201) {
     console.log(`${user.username} is successfully signed up.`);
-    
-  } else if (response.status === 400) {
-    const data = response.json();
-    console.log(data);
-    setErrors(data.errors);
-  }
+  } 
+  // else if (response.status === 400) {
+  //   const data = response.json();
+  //   console.log(data);
+  //   setErrors(data.errors);
+  // }
 
 //  axios(options)
 //     .then(response => {
@@ -64,12 +65,20 @@ try {
   } else if (error.request) {
     console.log("No response received: ", error.request);
     setErrors(["No response from the server. Please try again later."]);
+    navigate("/error");
   } else {
     console.log("Error setting up request: ", error.message);
     setErrors([error.message]);
+    navigate("/error");
   }
 };
   }
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    navigate("/");
+  }
+
   return (
     <main>
       <div class="form--centered">
@@ -105,7 +114,7 @@ try {
           </button>
           <button
             class="button button-secondary"
-            onclick="event.preventDefault(); location.href='index.html';"
+            onClick={handleCancel}
           >
             Cancel
           </button>

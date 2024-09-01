@@ -33,10 +33,24 @@ app.get('/', (req, res) => {
 // A /api/users GET route that will return all properties and values for the currently authenticated User along with a 200 HTTP status code.
 app.get('/api/users', authenticateUser, (async (req, res) => {
   try {
+    //console.log(req.headers.authorization);
     const user = req.currentUser;
-    res.status(200).json(user);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const userData = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      emailAddress: user.emailAddress
+    };
+
+    res.status(200).json(userData);
   } catch (error) {
-    res.status(500).json({ "message": error });
+    console.error('Error retrieving user:', error);
+    res.status(500).json({ message: 'An unexpected error occurred. Please try again later.' });
   }
   
 }));

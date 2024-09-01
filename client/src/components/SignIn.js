@@ -8,25 +8,61 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Event Handlers
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.get("http://localhost:5000/api/users", {
-        email,
-        password,
-      });
+    const credentials = {
+      username: email,
+      password: password,
+    };
 
-      if (response.status === 200) {
-        navigate("/courses");
+    const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+
+    const options = {
+      url: "http://localhost:5000/api/users",
+      method: "GET",
+      headers: {
+        'Authorization': `Basic ${encodedCredentials}`,
       }
-    } catch (err) {
-      setError("Invalid email or password");
     }
+
+    try {
+      const response = await axios(options);
+      //console.log(response);
+      if(response.status === 200) {
+        console.log(`${email} is successfully signed in.`);
+        const user = response.data;
+        console.log(user)
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.response.status);
+      if (error.response && error.response.status === 401) {
+        setError('Unauthorized: Incorrect email or password');
+        console.log(error);
+      } else {
+      console.log("Error: ", error);
+      navigate("/error");
+    }
+    }
+
+    // try {
+    //   const response = await axios.get("http://localhost:5000/api/users", {
+    //     email,
+    //     password,
+    //   });
+
+    //   if (response.status === 200) {
+    //     navigate("/courses");
+    //   }
+    // } catch (err) {
+    //   setError("Invalid email or password");
+    // }
   };
 
   const handleCancel = () => {
-    navigate('/courses');
+    navigate('/');
   };
 
   return (

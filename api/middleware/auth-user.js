@@ -25,7 +25,7 @@ exports.authenticateUser = async (req, res, next) => {
             // that was retrieved from the data store.
             if (authenticated) {
                 // If the passwords match...
-                console.log(`Authentication successful for username: ${user.username}`);
+                console.log(`Authentication successful for username: ${user.emailAddress}`);
                 // Store the retrieved user object on the request object
                 req.currentUser = user;
                 // so any middleware functions that follow this middleware function
