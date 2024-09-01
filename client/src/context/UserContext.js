@@ -35,13 +35,15 @@ export const UserProvider = ({ children }) => {
 
   const signOutUser = () => {
       // Sign Out User Function
+      setUser(null);
   };
 
   return (
     <UserContext.Provider value={{
       user, 
       actions: {
-        signInUser
+        signInUser,
+        signOutUser
       }
     }}>
       {children}
