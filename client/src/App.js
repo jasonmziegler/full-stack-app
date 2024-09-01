@@ -4,6 +4,7 @@ import './App.css';
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from './context/UserContext';
 
 import Header from './components/Header';
 
@@ -32,9 +33,10 @@ function App() {
       console.error('Error fetching data:', error);
     })
   }, []);
-  
+
   return (
-    <Router>
+    <div>
+      {console.log(UserContext)}
       <Header/>
       <Routes>
         <Route path="/" element={<Courses/>} />
@@ -48,19 +50,17 @@ function App() {
         <Route path='/signout' element={<SignOut />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='*' element={<NotFound/>} />
-
       </Routes>
       <div>
-      
-      
-      <h1>API Data</h1>
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
+        <h1>API Data</h1>
+        {data ? (
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+  
     </div>
-    </Router>
   );
 }
 
