@@ -33,11 +33,10 @@ const CreateCourse = () => {
           "Authorization": `Basic ${user.authToken}`,
         },
       });
-      if (response === 201) {
+      if (response.status === 201) {
         const {courseId} = response.data;
         navigate(`/courses/${courseId}`); // Redirect to the course list after create course is successful
       }
-      
       } catch (error) {
         if (error.response && error.response.status === 400) {
           setErrors(error.response.data.errors);
