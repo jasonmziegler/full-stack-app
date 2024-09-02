@@ -49,19 +49,38 @@ const CreateCourse = () => {
                     <div class="main--flex">
                         <div>
                             <label for="courseTitle">Course Title</label>
-                            <input id="courseTitle" name="courseTitle" type="text" value=""></input>
+                            <input 
+                              id="courseTitle" 
+                              name="title" 
+                              type="text" 
+                              value={course.title}
+                              onChange={handleChange}></input>
 
-                            <p>By Joe Smith</p>
+                            <p>By {user.firstName}, UserId {user.id} </p>
 
                             <label for="courseDescription">Course Description</label>
-                            <textarea id="courseDescription" name="courseDescription"></textarea>
+                            <textarea 
+                              id="courseDescription" 
+                              name="description"
+                              value={course.description}
+                              onChange={handleChange}
+                              ></textarea>
                         </div>
                         <div>
                             <label for="estimatedTime">Estimated Time</label>
-                            <input id="estimatedTime" name="estimatedTime" type="text" value=""></input>
+                            <input 
+                              id="estimatedTime" 
+                              name="estimatedTime" 
+                              type="text" 
+                              value={course.estimatedTime}
+                              onChange={handleChange}></input>
 
                             <label for="materialsNeeded">Materials Needed</label>
-                            <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
+                            <textarea 
+                              id="materialsNeeded" 
+                              name="materialsNeeded"
+                              value={course.materialsNeeded}
+                              onChange={handleChange}></textarea>
                         </div>
                     </div>
                     <button className="button" type="submit">Create Course</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
