@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const UpdateCourse = () => {
@@ -29,7 +29,7 @@ const UpdateCourse = () => {
         setLoading(false);
       })
       .catch(error => {
-        if (error.response && error.response.status == 404) {
+        if (error.response && error.response.status === 404) {
           navigate('/not-found');
         } else {
           navigate('/error');
@@ -44,19 +44,58 @@ const UpdateCourse = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
+    // console.log("Form Submitted");
+
+    try {
+      const options = {
+        url: `http://localhost:5000/api/courses/${id}`,
+        method: "PUT",
+        headers: {
+          'Authorization': `Basic ${user.authToken}`,
+        },
+        data: {
+          title: course.title,
+          description: course.description,
+          estimatedTime: course.estimatedTime,
+          materialsNeeded: course.materialsNeeded,
+          userId: user.id, 
+        }
+      };
+      const response = await axios(options);
+      if (response.status === 204) {
+        navigate(`/courses/${id}`)
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrors(error.response.data.errors);
+      } else {
+        navigate('/error');
+      }
+    }
   };
 
   const handleCancel = () => {
     navigate(`/courses/${id}`);
   };
 
+  if (loading) return <p>Loading...</p>;
+
   return (
     <main>
       <div className="wrap">
         <h2>Update Course</h2>
+        { errors.length > 0 && (
+          <div className="validation--errors">
+          <h3>Validation Errors</h3>
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="main--flex">
             <div>
