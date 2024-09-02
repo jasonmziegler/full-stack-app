@@ -64,7 +64,7 @@ const CreateCourse = () => {
                 )}
                 
                 <form onSubmit={handleSubmit}>
-                    <div class="main--flex">
+                    <div className="main--flex">
                         <div>
                             <label for="courseTitle">Course Title</label>
                             <input 
