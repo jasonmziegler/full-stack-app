@@ -38,7 +38,10 @@ const UpdateCourse = () => {
   }, [id, navigate, user.id]);
 
   const handleChange = (e) => {
-
+    setCourse({
+      ...course,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
