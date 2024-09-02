@@ -8,6 +8,7 @@ const CreateCourse = () => {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
     const [course, setCourse] = useState({
+        id: user.id,
         title: '',
         description: "",
         estimatedTime: "", 
