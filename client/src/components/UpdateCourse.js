@@ -36,11 +36,25 @@ const UpdateCourse = () => {
         }
       });
   }, [id, navigate, user.id]);
+
+  const handleChange = (e) => {
+
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted");
+  };
+
+  const handleCancel = () => {
+    navigate(`/courses/${id}`);
+  };
+
   return (
     <main>
       <div className="wrap">
         <h2>Update Course</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="main--flex">
             <div>
               <label for="courseTitle">Course Title</label>
@@ -113,7 +127,7 @@ const UpdateCourse = () => {
           </button>
           <button
             className="button button-secondary"
-            onclick="event.preventDefault(); location.href='index.html';"
+            onClick={handleCancel}
           >
             Cancel
           </button>
