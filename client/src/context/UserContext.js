@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
       if(response.status === 200) {
         console.log(`${credentials.username} is successfully signed in.`);
         const user = response.data;
+        user.authToken = encodedCredentials;  // Store the auth token with the user data
         setUser(user);
         console.log(user);
         return user;
