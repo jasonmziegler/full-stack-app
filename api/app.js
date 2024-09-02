@@ -128,9 +128,14 @@ app.get('/api/courses/:id', (async (req, res) => {
 app.post('/api/courses', authenticateUser, (async (req, res) => {
   try {
     let course = await Course.create(req.body);
-    res.setHeader('Location', `/api/course/${course.id}`);
-    res.status(201).send();
+    //res.setHeader('Location', `/api/course/${course.id}`);
+    //res.status(201).send();
+    res.status(201).json({
+      message: 'Course created successfully',
+      courseId: course.id,
+    })
   } catch (error) {
+    console.error("Error: ", error); 
     //console.log ("Message: ", error.name);
     // Return 400 if validation error
     if (error.name === "SequelizeValidationError") {
