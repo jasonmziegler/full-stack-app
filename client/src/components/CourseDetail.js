@@ -37,6 +37,16 @@ const CourseDetail = () => {
     }
   }, [id]); // The dependency array should only include `id`
 
+  const handleDeleteCourse = async () => {
+    if (window.confirm("Delete this course? (Action cannot be undone)")) {
+      try {
+        console.log("Course Deleted");
+      } catch (error) {
+        console.error("Error deleting course:", error);
+        setError("Failed to delete course");
+      }
+    }
+  }
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
@@ -50,7 +60,7 @@ const CourseDetail = () => {
               <Link class="button" to={`/courses/${id}/update`}>
                 Update Course
               </Link>
-              <a class="button" href="#">
+              <a class="button" onClick={handleDeleteCourse}>
                 Delete Course
               </a>
             </>
