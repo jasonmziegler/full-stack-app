@@ -25,8 +25,22 @@ const CreateCourse = () => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-    }
-
+      try {
+        await axios.post("http://localhost:5000/api/courses", course, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Basic ${user.authToken}`,
+        },
+      });
+      navigate("/"); // Redirect to the course list after create course is successful
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          setErrors(error.response.data.errors);
+        } else {
+          navigate("/error");
+        }
+      }
+    };
     const handleCancel = () => {
       navigate("/");
     }
