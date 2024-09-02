@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateCourse = () => {
@@ -26,6 +26,10 @@ const CreateCourse = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
     }
+
+    const handleCancel = () => {
+      navigate("/");
+    }
     return (
         <main>
             <div class="wrap">
@@ -41,7 +45,7 @@ const CreateCourse = () => {
                 </div>
                 )}
                 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div class="main--flex">
                         <div>
                             <label for="courseTitle">Course Title</label>
@@ -60,7 +64,7 @@ const CreateCourse = () => {
                             <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
                         </div>
                     </div>
-                    <button class="button" type="submit">Create Course</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+                    <button className="button" type="submit">Create Course</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
         </main>
