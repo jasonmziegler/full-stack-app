@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import {UserContext} from './context/UserContext';
+import PrivateRoute from './components/PrivateRoute';
 
 import Header from './components/Header';
 
@@ -39,16 +40,22 @@ function App() {
       {console.log(UserContext)}
       <Header/>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Courses/>} />
         <Route path="/courses/:id" element={<CourseDetail/>} />
-        <Route path="/courses/create" element={<CreateCourse/>} />
-        <Route path="/courses/:id/update" element={<UpdateCourse />} />
         <Route path='/error' element={<Error/>} />
         <Route path='/forbidden' element={<Forbidden />} />
         <Route path='/not-found' element={<NotFound />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signout' element={<SignOut />} />
         <Route path='/signup' element={<SignUp />} />
+
+        {/* Protected Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/courses/create" element={<CreateCourse/>} />
+          <Route path="/courses/:id/update" element={<UpdateCourse />} />
+        </Route>
+        {/* Anything Else*/}
         <Route path='*' element={<NotFound/>} />
       </Routes>
       <div>
