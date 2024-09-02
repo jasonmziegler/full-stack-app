@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+import { UserContext } from "../context/UserContext";
+
 const CourseDetail = () => {
   const { id } = useParams(); // Retrieve the course ID from the URL
+  const { user } = useContext(UserContext); // Access the Authenticated User
 
   // console.log("Course ID from URL: ", id);
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // TODO: add a handleDeleteCourse function or add action to CourseContext
+  // TODO: create CourseContext?
 
   useEffect(() => {
     // Fetch course details only if the ID is valid
@@ -38,12 +44,17 @@ const CourseDetail = () => {
     <main>
       <div class="actions--bar">
         <div class="wrap">
-          <Link class="button" to={`/courses/${id}/update`}>
-            Update Course
-          </Link>
-          <a class="button" href="#">
-            Delete Course
-          </a>
+          {/* Conditionally render Update and Delete buttons */}
+          {user && user.id === course.userId && (
+            <>
+              <Link class="button" to={`/courses/${id}/update`}>
+                Update Course
+              </Link>
+              <a class="button" href="#">
+                Delete Course
+              </a>
+            </>
+          )}
           <Link class="button button-secondary" to="/">
             Return to List
           </Link>
