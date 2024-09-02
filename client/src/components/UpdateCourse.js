@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const UpdateCourse = () => {
+  const {id} = useParams();
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [course, setCourse] = useState({
+    title: "",
+    description: "",
+    estimatedTime: "",
+    materialsNeeded: "",
+  });
+
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // Get course details from API when component MOunts
+  useEffect(()=> {
+    axios.get(`http://localhost:5000/api/courses/${id}`)
+      .then(response => {
+        const fetchedCourse = response.data;
+        if (fetchedCourse.userId !== user.id) {
+          navigate("/forbidden");
+        } else {
+          setCourse(fetchedCourse);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        if (error.response && error.response.status == 404) {
+          navigate('/not-found');
+        } else {
+          navigate('/error');
+        }
+      });
+  }, [id, navigate, user.id]);
   return (
     <main>
-      <div class="wrap">
+      <div className="wrap">
         <h2>Update Course</h2>
         <form>
-          <div class="main--flex">
+          <div className="main--flex">
             <div>
               <label for="courseTitle">Course Title</label>
               <input
@@ -76,11 +108,11 @@ const UpdateCourse = () => {
               </textarea>
             </div>
           </div>
-          <button class="button" type="submit">
+          <button className="button" type="submit">
             Update Course
           </button>
           <button
-            class="button button-secondary"
+            className="button button-secondary"
             onclick="event.preventDefault(); location.href='index.html';"
           >
             Cancel
