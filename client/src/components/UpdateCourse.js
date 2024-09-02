@@ -1,4 +1,7 @@
 import React from "react";
+import axios from "axios";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const UpdateCourse = () => {
   return (
