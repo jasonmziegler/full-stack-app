@@ -1,17 +1,46 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+import axios from "axios";
+import { UserContext } from "../context/UserContext";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const CreateCourse = () => {
+    const navigate = useNavigate();
+    const { user } = useContext(UserContext);
+    const [course, setCourse] = useState({
+        title: '',
+        description: "",
+        estimatedTime: "", 
+        materialsNeeded: "",
+    }
+    );
+
+    const [ errors, setErrors] = useState([]);
+
+    const handleChange = (e) => {
+        setCourse({...course, 
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    }
     return (
         <main>
             <div class="wrap">
                 <h2>Create Course</h2>
-                <div class="validation--errors">
-                    <h3>Validation Errors</h3>
-                    <ul>
-                        <li>Please provide a value for "Title"</li>
-                        <li>Please provide a value for "Description"</li>
-                    </ul>
+                {errors.length > 0 && (
+                  <div class="validation--errors">
+                  <h3>Validation Errors</h3>
+                  <ul>
+                      {errors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                  </ul>
                 </div>
+                )}
+                
                 <form>
                     <div class="main--flex">
                         <div>
