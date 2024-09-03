@@ -57,16 +57,7 @@ function App() {
         </Route>
         {/* Anything Else*/}
         <Route path='*' element={<NotFound/>} />
-      </Routes>
-      <div>
-        <h1>API Data</h1>
-        {data ? (
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
-  
+      </Routes> 
     </div>
   );
 }
