@@ -16,8 +16,6 @@ const CourseDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
-
   useEffect(() => {
     // Fetch course details only if the ID is valid
     if (id) {
@@ -38,12 +36,9 @@ const CourseDetail = () => {
     }
   }, [id]); // The dependency array should only include `id`
 
-  // TODO: add a handleDeleteCourse function or add action to CourseContext
-  // TODO: create CourseContext?
   const handleDeleteCourse = async () => {
     if (window.confirm("Delete this course? (Action cannot be undone)")) {
       try {
-        // console.log("Course Deleted");
         const options = {
           method: "DELETE",
           url: `http://localhost:5000/api/courses/${id}`,
@@ -72,7 +67,7 @@ const CourseDetail = () => {
               <Link class="button" to={`/courses/${id}/update`}>
                 Update Course
               </Link>
-              <button onClick={handleDeleteCourse}>
+              <button class="button" onClick={handleDeleteCourse}>
                 Delete Course
               </button>
             </>
