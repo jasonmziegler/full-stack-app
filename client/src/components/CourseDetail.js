@@ -47,7 +47,7 @@ const CourseDetail = () => {
           method: "DELETE",
           url: `http://localhost:5000/api/courses/${id}`,
           headers: {
-            'Authorization' : `Basic ${user.authUser}`
+            'Authorization' : `Basic ${user.authToken}`
           }
         };
         await axios(options);
