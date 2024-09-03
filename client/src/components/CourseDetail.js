@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
+import ReactMarkdown from 'react-markdown';
 
 const CourseDetail = () => {
   const { id } = useParams(); // Retrieve the course ID from the URL
@@ -71,9 +72,9 @@ const CourseDetail = () => {
               <Link class="button" to={`/courses/${id}/update`}>
                 Update Course
               </Link>
-              <a class="button" onClick={handleDeleteCourse}>
+              <button onClick={handleDeleteCourse}>
                 Delete Course
-              </a>
+              </button>
             </>
           )}
           <Link class="button button-secondary" to="/">
@@ -91,7 +92,7 @@ const CourseDetail = () => {
               <h4 class="course--name">{course.title}</h4>
               <p>By {course.userId}</p>
 
-              <p>{course.description}</p>
+              <ReactMarkdown>{course.description}</ReactMarkdown>
             </div>
             <div>
               <h3 class="course--detail--title">Estimated Time</h3>
@@ -99,7 +100,7 @@ const CourseDetail = () => {
 
               <h3 class="course--detail--title">Materials Needed</h3>
               <ul class="course--detail--list">
-                {course.materialsNeeded}
+              <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
               </ul>
             </div>
           </div>
@@ -110,41 +111,3 @@ const CourseDetail = () => {
 };
 
 export default CourseDetail;
-
-/* <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Treehouse Full Stack JavaScript Project 10 | Full Stack App with React and a REST API">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <title>Courses</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
-        rel="stylesheet">
-    <link href="../styles/reset.css" rel="stylesheet">
-    <link href="../styles/global.css" rel="stylesheet">
-</head>
-
-<body>
-    <div id="root">
-        <header>
-            <div class="wrap header--flex">
-                <h1 class="header--logo"><a href="index.html">Courses</a></h1>
-                <nav>
-                    <ul class="header--signedin">
-                        <li>Welcome, Joe Smith!</li>
-                        <li><a href="sign-out.html">Sign Out</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        
-    </div>
-</body>
-
-</html>
-
-*/
