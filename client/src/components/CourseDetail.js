@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
@@ -8,14 +8,14 @@ import { UserContext } from "../context/UserContext";
 const CourseDetail = () => {
   const { id } = useParams(); // Retrieve the course ID from the URL
   const { user } = useContext(UserContext); // Access the Authenticated User
+  const navigate = useNavigate();
 
   // console.log("Course ID from URL: ", id);
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: add a handleDeleteCourse function or add action to CourseContext
-  // TODO: create CourseContext?
+  
 
   useEffect(() => {
     // Fetch course details only if the ID is valid
@@ -37,10 +37,21 @@ const CourseDetail = () => {
     }
   }, [id]); // The dependency array should only include `id`
 
+  // TODO: add a handleDeleteCourse function or add action to CourseContext
+  // TODO: create CourseContext?
   const handleDeleteCourse = async () => {
     if (window.confirm("Delete this course? (Action cannot be undone)")) {
       try {
-        console.log("Course Deleted");
+        // console.log("Course Deleted");
+        const options = {
+          method: "DELETE",
+          url: `http://localhost:5000/api/courses/${id}`,
+          headers: {
+            'Authorization' : `Basic ${user.authUser}`
+          }
+        };
+        await axios(options);
+        navigate("/");
       } catch (error) {
         console.error("Error deleting course:", error);
         setError("Failed to delete course");
