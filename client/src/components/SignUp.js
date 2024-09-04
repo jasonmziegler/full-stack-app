@@ -48,24 +48,6 @@ try {
       setErrors('Sign in was unsuccessful');
     }
   } 
-  // else if (response.status === 400) {
-  //   const data = response.json();
-  //   console.log(data);
-  //   setErrors(data.errors);
-  // }
-
-//  axios(options)
-//     .then(response => {
-//       if(response.status === 201) {
-//         console.log(`${user.username} is successfully signed up.`);
-//       } else if (response.status === 400) {
-//         const data = response.json();
-//         console.log(data);
-//         setErrors(data.errors);
-//       }
-//     }
-  
-//   )
 } catch(error) {
   console.log("Caught Errors: ", error)
   if (error.response) {
