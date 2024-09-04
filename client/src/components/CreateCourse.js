@@ -52,11 +52,11 @@ const CreateCourse = () => {
     }
     return (
         <main>
-            <div class="wrap">
+            <div className="wrap">
                 <h2>Create Course</h2>
                 {errors.length > 0 
                 ? (
-                  <div class="validation--errors">
+                  <div className="validation--errors">
                   <h3>Validation Errors</h3>
                   <ul>
                       {errors.map((error, index) => (
@@ -69,7 +69,7 @@ const CreateCourse = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="main--flex">
                         <div>
-                            <label for="courseTitle">Course Title</label>
+                            <label htmlFor="courseTitle">Course Title</label>
                             <input 
                               id="courseTitle" 
                               name="title" 
@@ -79,7 +79,7 @@ const CreateCourse = () => {
 
                             <p>By {user.firstName}, UserId {user.id} </p>
 
-                            <label for="courseDescription">Course Description</label>
+                            <label htmlFor="courseDescription">Course Description</label>
                             <textarea 
                               id="courseDescription" 
                               name="description"
@@ -88,7 +88,7 @@ const CreateCourse = () => {
                               ></textarea>
                         </div>
                         <div>
-                            <label for="estimatedTime">Estimated Time</label>
+                            <label htmlFor="estimatedTime">Estimated Time</label>
                             <input 
                               id="estimatedTime" 
                               name="estimatedTime" 
@@ -96,7 +96,7 @@ const CreateCourse = () => {
                               value={course.estimatedTime}
                               onChange={handleChange}></input>
 
-                            <label for="materialsNeeded">Materials Needed</label>
+                            <label htmlFor="materialsNeeded">Materials Needed</label>
                             <textarea 
                               id="materialsNeeded" 
                               name="materialsNeeded"

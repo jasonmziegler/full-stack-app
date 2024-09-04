@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // moved axios import to UserContext
 import { UserContext } from "../context/UserContext";
 
@@ -76,7 +76,7 @@ const SignIn = () => {
         </form>
         <p>
           Don't have a user account? Click here to{" "}
-          <a href="sign-up.html">sign up</a>!
+          <Link to="/signup">sign up</Link>!
         </p>
       </div>
     </main>

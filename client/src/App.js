@@ -1,9 +1,9 @@
 //import logo from './logo.svg';
 import './App.css';
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import {UserContext} from './context/UserContext';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -22,18 +22,18 @@ import UpdateCourse from './components/UpdateCourse';
 
 function App() {
 
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
-  useEffect(() => {
-    //Make API Request
-    axios.get('http://localhost:5000/api/courses')
-    .then(response => {
-      setData(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    })
-  }, []);
+  // useEffect(() => {
+  //   //Make API Request
+  //   axios.get('http://localhost:5000/api/courses')
+  //   .then(response => {
+  //     setData(response.data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error fetching data:', error);
+  //   })
+  // }, []);
 
   return (
     <div>
@@ -57,7 +57,8 @@ function App() {
         </Route>
         {/* Anything Else*/}
         <Route path='*' element={<NotFound/>} />
-      </Routes> 
+      </Routes>
+  
     </div>
   );
 }

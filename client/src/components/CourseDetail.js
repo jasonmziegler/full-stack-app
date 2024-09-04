@@ -59,42 +59,42 @@ const CourseDetail = () => {
 
   return (
     <main>
-      <div class="actions--bar">
-        <div class="wrap">
+      <div className="actions--bar">
+        <div className="wrap">
           {/* Conditionally render Update and Delete buttons */}
           {user && user.id === course.userId && (
             <>
-              <Link class="button" to={`/courses/${id}/update`}>
+              <Link className="button" to={`/courses/${id}/update`}>
                 Update Course
               </Link>
-              <button class="button" onClick={handleDeleteCourse}>
+              <button className="button" onClick={handleDeleteCourse}>
                 Delete Course
               </button>
             </>
           )}
-          <Link class="button button-secondary" to="/">
+          <Link className="button button-secondary" to="/">
             Return to List
           </Link>
         </div>
       </div>
 
-      <div class="wrap">
+      <div className="wrap">
         <h2>Course Detail</h2>
         <form>
-          <div class="main--flex">
+          <div className="main--flex">
             <div>
-              <h3 class="course--detail--title">Course</h3>
-              <h4 class="course--name">{course.title}</h4>
+              <h3 className="course--detail--title">Course</h3>
+              <h4 className="course--name">{course.title}</h4>
               <p>By {course.userId}</p>
 
               <ReactMarkdown>{course.description}</ReactMarkdown>
             </div>
             <div>
-              <h3 class="course--detail--title">Estimated Time</h3>
+              <h3 className="course--detail--title">Estimated Time</h3>
               <p>{course.estimatedTime}</p>
 
-              <h3 class="course--detail--title">Materials Needed</h3>
-              <ul class="course--detail--list">
+              <h3 className="course--detail--title">Materials Needed</h3>
+              <ul className="course--detail--list">
               <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
               </ul>
             </div>

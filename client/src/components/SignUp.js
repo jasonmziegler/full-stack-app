@@ -87,24 +87,24 @@ try {
             </div>
           ) : null }
         <form onSubmit={handleSubmit}>
-          <label for="firstName">First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input id="firstName" name="firstName" type="text" ref={firstname}></input>
-          <label for="lastName">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input id="lastName" name="lastName" type="text" ref={lastname}></input>
-          <label for="emailAddress">Email Address</label>
+          <label htmlFor="emailAddress">Email Address</label>
           <input
             id="emailAddress"
             name="emailAddress"
             type="email"
             ref={username}
           ></input>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input id="password" name="password" type="password" ref={password}></input>
-          <button class="button" type="submit">
+          <button className="button" type="submit">
             Sign Up
           </button>
           <button
-            class="button button-secondary"
+            className="button button-secondary"
             onClick={handleCancel}
           >
             Cancel
