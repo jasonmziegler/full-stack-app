@@ -98,7 +98,7 @@ const UpdateCourse = () => {
         <form onSubmit={handleSubmit}>
           <div className="main--flex">
             <div>
-              <label for="courseTitle">Course Title</label>
+              <label htmlFor="courseTitle">Course Title</label>
               <input
                 id="courseTitle"
                 name="title"
@@ -109,7 +109,7 @@ const UpdateCourse = () => {
 
               <p>By User {user.firstName} Id {course.userId}</p>
 
-              <label for="courseDescription">Course Description</label>
+              <label htmlFor="courseDescription">Course Description</label>
               <textarea 
                 id="courseDescription" 
                 name="description"
@@ -119,7 +119,7 @@ const UpdateCourse = () => {
               </textarea>
             </div>
             <div>
-              <label for="estimatedTime">Estimated Time</label>
+              <label htmlFor="estimatedTime">Estimated Time</label>
               <input
                 id="estimatedTime"
                 name="estimatedTime"
@@ -128,7 +128,7 @@ const UpdateCourse = () => {
                 onChange={handleChange}
               ></input>
 
-              <label for="materialsNeeded">Materials Needed</label>
+              <label htmlFor="materialsNeeded">Materials Needed</label>
               <textarea 
                 id="materialsNeeded" 
                 name="materialsNeeded"
