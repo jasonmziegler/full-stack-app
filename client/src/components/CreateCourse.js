@@ -47,7 +47,8 @@ const CreateCourse = () => {
         }
       }
     };
-    const handleCancel = () => {
+    const handleCancel = (e) => {
+      e.preventDefault();
       navigate("/");
     }
     return (
@@ -77,7 +78,7 @@ const CreateCourse = () => {
                               value={course.title}
                               onChange={handleChange}></input>
 
-                            <p>By {user.firstName}, UserId {user.id} </p>
+                            <p>By {user.firstName} {user.lastName} </p>
 
                             <label htmlFor="courseDescription">Course Description</label>
                             <textarea 

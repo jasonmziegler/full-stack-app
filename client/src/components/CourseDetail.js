@@ -22,9 +22,11 @@ const CourseDetail = () => {
       console.log('Id Param from URL: ', id);
       axios.get(`http://localhost:5000/api/courses/${id}`)
         .then(response => {
-          setCourse(response.data);
+          const courseData = response.data;
+          setCourse(courseData);
           console.log(response.data);
           setLoading(false); // Stop loading once data is fetched
+          // return axios.get(`http://localhost:5000/api/user`)
         })
         .catch(error => {
           setError('Course not found');
@@ -86,6 +88,7 @@ const CourseDetail = () => {
               <h3 className="course--detail--title">Course</h3>
               <h4 className="course--name">{course.title}</h4>
               <p>By {course.userId}</p>
+              {/* <p>By {user.firstName} {user.lastName}</p> */}
 
               <ReactMarkdown>{course.description}</ReactMarkdown>
             </div>

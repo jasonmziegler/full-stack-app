@@ -107,7 +107,7 @@ const UpdateCourse = () => {
                 onChange={handleChange}
               ></input>
 
-              <p>By User {user.firstName} Id {course.userId}</p>
+              <p>By {user.firstName} {user.lastName}</p>
 
               <label htmlFor="courseDescription">Course Description</label>
               <textarea 
