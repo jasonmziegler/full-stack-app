@@ -38,9 +38,9 @@ const CreateCourse = () => {
         navigate(`/courses/${courseId}`); // Redirect to the course list after create course is successful
       }
       } catch (error) {
-        console.log(error);
+        //console.log(error);
         if (error.response && error.response.status === 400) {
-          console.log("400 error detected", error.response.data.message.errors);
+          //console.log("400 error detected", error.response.data.message.errors);
           setErrors(error.response.data.message.errors);
         } else {
           navigate("/error");

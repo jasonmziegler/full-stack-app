@@ -72,7 +72,7 @@ try {
 
   return (
     <main>
-      <div class="form--centered">
+      <div className="form--centered">
         <h2>Sign Up</h2>
 
         {/*Error Code from react-authentication course */}

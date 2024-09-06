@@ -16,7 +16,7 @@ const Header = () => {
         </h1>
         <nav>
           <ul className="header--signedout">
-            {console.log("Auth User: ", user)}
+            {/* {console.log("Auth User: ", user)} */}
             {user ? (
               <>
                 <li>Welcome, {user.firstName}</li>

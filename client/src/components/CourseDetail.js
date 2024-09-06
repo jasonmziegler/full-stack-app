@@ -19,12 +19,12 @@ const CourseDetail = () => {
   useEffect(() => {
     // Fetch course details only if the ID is valid
     if (id) {
-      console.log('Id Param from URL: ', id);
+      //console.log('Id Param from URL: ', id);
       axios.get(`http://localhost:5000/api/courses/${id}`)
         .then(response => {
           const courseData = response.data;
           setCourse(courseData);
-          console.log(response.data);
+          //console.log(response.data);
           setLoading(false); // Stop loading once data is fetched
           // return axios.get(`http://localhost:5000/api/user`)
         })
@@ -51,7 +51,7 @@ const CourseDetail = () => {
         await axios(options);
         navigate("/");
       } catch (error) {
-        console.error("Error deleting course:", error);
+        //console.error("Error deleting course:", error);
         setError("Failed to delete course");
       }
     }

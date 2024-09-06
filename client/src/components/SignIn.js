@@ -29,10 +29,10 @@ const SignIn = () => {
         setError('Sign in was unsuccessful');
       }
     } catch (error) {
-      console.log(error.response.status);
+      //console.log(error.response.status);
       if (error.response && error.response.status === 401) {
         setError('Unauthorized: Incorrect email or password');
-        console.log(error);
+        //console.log(error);
       } else {
       console.log("Error: ", error);
       navigate("/error");
