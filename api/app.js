@@ -117,7 +117,13 @@ app.get('/api/courses', (async (req, res) => {
 // A /api/courses/:id GET route that will return the corresponding course including the User associated with that course and a 200 HTTP status code.
 app.get('/api/courses/:id', (async (req, res) => {
   try {
-    let course = await Course.findOne({where: { 'id': req.params.id }});
+    let course = await Course.findOne({
+      where: { 'id': req.params.id }, 
+      include: {
+        model: User,
+        attributes: ['firstName', 'lastName']
+      }
+    });
     res.status(200).json(course);
   } catch (error) {
     res.status(500).json({ "message": error });

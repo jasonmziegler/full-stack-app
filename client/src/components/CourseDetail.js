@@ -87,8 +87,8 @@ const CourseDetail = () => {
             <div>
               <h3 className="course--detail--title">Course</h3>
               <h4 className="course--name">{course.title}</h4>
-              <p>By {course.userId}</p>
-              {/* <p>By {user.firstName} {user.lastName}</p> */}
+              {/* <p>By {course.userId}</p> */}
+              <p>By {course.User ? `${course.User.firstName} ${course.User.lastName}` : 'Unknown'}</p>
 
               <ReactMarkdown>{course.description}</ReactMarkdown>
             </div>

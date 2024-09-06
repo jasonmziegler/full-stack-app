@@ -68,7 +68,7 @@ const UpdateCourse = () => {
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrors(error.response.data.errors);
+        setErrors(error.response.data.message.errors);
       } else {
         navigate('/error');
       }
@@ -90,7 +90,7 @@ const UpdateCourse = () => {
           <h3>Validation Errors</h3>
           <ul>
             {errors.map((error, index) => (
-              <li key={index}>{error}</li>
+              <li key={index}>{error.message}</li>
             ))}
           </ul>
         </div>
