@@ -1,9 +1,9 @@
-//import logo from './logo.svg';
+// I am going for Meets Expectations.
 import './App.css';
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import axios from 'axios';
+
 import {UserContext} from './context/UserContext';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -21,19 +21,6 @@ import SignOut from './components/SignOut';
 import UpdateCourse from './components/UpdateCourse';
 
 function App() {
-
-  // const [data, setData] = useState(null);
-
-  // useEffect(() => {
-  //   //Make API Request
-  //   axios.get('http://localhost:5000/api/courses')
-  //   .then(response => {
-  //     setData(response.data);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching data:', error);
-  //   })
-  // }, []);
 
   return (
     <div>
